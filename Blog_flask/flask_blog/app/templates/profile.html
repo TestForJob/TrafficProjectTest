@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>User: {{ user.username }}</h1>
+    <hr>
+    <h2>Posts</h2>
+    {% for post in posts %}
+    <h3 align="left"><a href="{{url_for('post_detail', post_id=post.id)}}">{{ post.title }} - {{post.created.strftime('%Y-%m-%d')}}</a></h3>
+    {% endfor %}
+{% endblock %}

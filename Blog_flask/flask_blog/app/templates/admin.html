@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+
+<hr>
+<table class="table table-striped table-bordered table-hover" id="myTable">
+	<thead>
+		<tr>
+			<th width="25" colspan="2"></th>
+			<th>Id</th>
+			<th>Title</th>
+			<th>Author</th>
+			<th>Created</th>
+		</tr>
+		
+	</thead>
+	<tfoot>
+		<tr>
+			<th width="25" colspan="2"></th>
+			<th>Id</th>
+			<th>Title</th>
+			<th>Author</th>
+			<th>Created</th>
+		</tr>		
+	</tfoot>
+	<tbody>
+		{%for post in posts%}
+		<tr>
+			<td width="12">
+				<a href="{{url_for('edit_post', post_id=post.id)}}"><img src="{{ url_for('static', filename='edit.png') }}" alt="" width="12", height="12"></a>
+			</td>
+			<td width="12">
+				<a href="{{url_for('delete_post', post_id=post.id)}}"><img src="{{ url_for('static', filename='trash.png') }}" alt="" width="12", height="12"></a>
+			</td>
+			<td>{{post.id}}</td>
+			<td>{{post.title}}</td>
+			<td>{{post.author.username}}</td>
+			<td>{{post.created.strftime('%Y.%m.%d %H:%m')}}</td>
+		</tr>
+		{%endfor%}
+	</tbody>
+
+</table>
+
+{% endblock content %}
+{% block script %}
+<<script>
+$(document).ready( function () {
+    $('#myTable').DataTable();
+} );
+</script>
+{% endblock script %}

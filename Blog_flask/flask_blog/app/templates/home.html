@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+<hr>
+{% for post in posts %}
+<p align="left"><a href="{{url_for('post_detail', post_id=post.id)}}">{{post.title}} - {{post.created.strftime('%Y-%m-%d')}}</a></p>
+<hr>
+{% endfor %}
+{% endblock content %}
